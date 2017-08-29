@@ -1,0 +1,24 @@
+
+<div class="container">
+  <h3>Apartments listings: sorted price ascending</h3>
+  <%= link_to '< Homepage', apartments_path, class:'btn btn-primary btn-sm'%>
+  <br>
+  <%= paginate @display %>
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Price</th>
+    </tr>
+   
+    <% @display.each do |apartment| %>
+      <tr>
+        <td><%= apartment.date %></td>
+        <td><%= apartment.title %></td>
+        <td>$ <%= apartment.price%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+

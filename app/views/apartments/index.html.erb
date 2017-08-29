@@ -1,0 +1,46 @@
+
+
+<div class="container text-center">
+  <h2>Craigslist Scraper</h2>
+  <h4>Apartment listings count by price range. Click to view. </h4>
+ 
+    <ul>
+        <%= link_to display_path("choice" => "price_range_1") do %>
+        <ul class="btn btn-primary">Less than $1000: <%= pluralize(@apartments_1, "listing") %></ul>
+        <% end %>
+
+        <%= link_to display_path("choice" => "price_range_2") do %>
+        <ul class="btn btn-primary">$1001 to $1500: <%= pluralize(@apartments_2, "listing") %></ul>
+        <% end %>
+
+        <%= link_to display_path("choice" => "price_range_3") do %>
+        <ul class="btn btn-primary">$1501 to $2000: <%= pluralize(@apartments_3, "listing") %></ul>
+        <% end %>  
+
+        <%= link_to display_path("choice" => "price_range_4") do %>
+        <ul class="btn btn-primary">Greater than $2000: <%= pluralize(@apartments_4, "listing") %></ul>
+        <% end %>
+  </ul>
+
+</div>
+
+
+<div class="container">
+<h3>Apartments listings: latest to oldest </h3>
+ <%= paginate @apartments %>
+<table class="table table-striped">
+  <tr>
+    <th>Date</th>
+    <th>Title</th>
+    <th>Price</th>
+  </tr>
+ 
+  <% @apartments.each do |apartment| %>
+    <tr>
+      <td><%= apartment.date %></td>
+      <td><%= apartment.title %></td>
+      <td>$ <%= apartment.price%></td>
+    </tr>
+  <% end %>
+</table>
+</div>
