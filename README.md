@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Web Scraper
 
-Things you may want to cover:
+Please follow below steps to setup the project.
 
-* Ruby version
+Clone the repo
+run bundle
+rak db:migrate
+rake db:seed
+rails s
 
-* System dependencies
+To run the rake file
+rake scraper:scrape
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Databse used sqlite3
