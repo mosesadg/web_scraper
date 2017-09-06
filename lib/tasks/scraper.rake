@@ -3,20 +3,20 @@ namespace :scraper do
   task scrape: :environment do
 
 
-	agent = Mechanize.new 
-	url = "https://raleigh.craigslist.org/search/apa"
+	agent = Mechanize.new
+	# url = type url here
 	page = agent.get(url)
-	apts_array = [] 
-	max_count = 999 # change for number of records to be downloaded
+	apts_array = []
+	max_count = 20 # change for number of records to be downloaded
 	record_created = 0
 
-	while record_created <= max_count && link = page.link_with(text: 'next > ') 
+	while record_created <= max_count && link = page.link_with(text: 'next > ')
 
 	apts = page.css('.content').css('.result-row').css('.result-info')
-		
+
 		apts.each do |apt|
 			if record_created <= max_count
-				
+
 				apt_title = apt.css('.result-title').text
 				apt_price = (apt.css('.result-price').text)[1..-1].to_f
 				apt_date = Date.parse(apt.css('.result-date').text).to_s
@@ -28,7 +28,7 @@ namespace :scraper do
       		date: apt_date)
 
 				record_created += 1
-		
+
 			end
 		end
 
@@ -38,14 +38,12 @@ namespace :scraper do
 		url = next_page.uri.to_s
 		p "scraped from url: " + url
 		page = agent.get(url)
-	
+
 end
-	
+
 	p "Total records scrapped: " + record_created.to_s
-	
+
   end
 end
 
  #rake scraper:scrape
-
-
